@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../entities/user.entity';
-import { Context } from '../types/context';
+import { Context } from '../types/context.types';
 
 export const generateToken = (user: User): string => {
   return jwt.sign(

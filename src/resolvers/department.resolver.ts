@@ -19,7 +19,7 @@ import {
   }
   
   @InputType()
-  class CreateDepartmentInput {
+  export class CreateDepartmentInput {
     @Field()
     name!: string;
   
