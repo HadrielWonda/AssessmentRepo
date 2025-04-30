@@ -1,5 +1,6 @@
+import React from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../queries/auth';
+import { LOGIN } from '../graphql/queries/auth'; // Update the path to the correct location
 import { useRouter } from 'next/router';
 
 export default function LoginPage() {
