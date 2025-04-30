@@ -1,0 +1,21 @@
+frontend/
+├─ components/
+│  ├─ Auth/
+│  │  └─ LoginForm.tsx
+│  ├─ Department/
+│  │  ├─ DepartmentTree.tsx
+│  │  ├─ DepartmentForm.tsx
+│  │  └─ SubDepartmentForm.tsx
+│  └─ Layout.tsx
+├─ lib/
+│  ├─ apolloClient.ts
+│  └─ auth.ts
+├─ pages/
+│  ├─ index.tsx
+│  ├─ login.tsx
+│  ├─ departments/
+│  │  ├─ index.tsx
+│  │  └─ [id].tsx
+│  └─ _app.tsx
+└─ styles/
+   └─ globals.css

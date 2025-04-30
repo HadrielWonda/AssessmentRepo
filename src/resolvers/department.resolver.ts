@@ -44,4 +44,20 @@ import {
     async getDepartments(): Promise<Department[]> {
       return this.departmentService.getAllDepartments();
     }
+
+
+    @UseMiddleware(authMiddleware)
+@Mutation(() => Boolean)
+async deleteDepartment(@Arg('id') id: number): Promise<boolean> {
+  return this.departmentService.deleteDepartment(id);
+}
+
+@UseMiddleware(authMiddleware)
+@Mutation(() => Department)
+async updateDepartment(
+  @Arg('id') id: number,
+  @Arg('name') name: string
+): Promise<Department> {
+  return this.departmentService.updateDepartment(id, name);
+}
   }

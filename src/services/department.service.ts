@@ -44,4 +44,17 @@ export class DepartmentService {
       relations: ['subDepartments'],
     });
   }
+
+  async updateDepartment(id: number, name: string): Promise<Department> {
+    await this.departmentRepository.update(id, { name });
+    return this.departmentRepository.findOneOrFail({
+      where: { id },
+      relations: ['subDepartments']
+    });
+  }
+  
+  async deleteDepartment(id: number): Promise<boolean> {
+    const result = await this.departmentRepository.delete(id);
+    return result.affected! > 0;
+  }
 }
