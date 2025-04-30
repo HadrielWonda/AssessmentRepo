@@ -1,0 +1,41 @@
+// src/services/department.service.ts
+import { Department } from '../entities/department.entity';
+import { SubDepartment } from '../entities/sub-department.entity';
+import { AppDataSource } from '../data-source';
+import { CreateDepartmentInput } from '../resolvers/department.resolver';
+
+export class DepartmentService {
+  private departmentRepository = AppDataSource.getRepository(Department);
+  private subDepartmentRepository = AppDataSource.getRepository(SubDepartment);
+
+  async createDepartment(input: CreateDepartmentInput): Promise<Department> {
+    return AppDataSource.transaction(async (transactionalEntityManager) => {
+      const department = new Department();
+      department.name = input.name;
+
+      const savedDepartment = await transactionalEntityManager.save(department);
+
+      if (input.subDepartments?.length) {
+        const subDepartments = input.subDepartments.map((sub) => {
+          const newSub = new SubDepartment();
+          newSub.name = sub.name;
+          newSub.department = savedDepartment;
+          return newSub;
+        });
+
+        await transactionalEntityManager.save(subDepartments);
+      }
+
+      return this.departmentRepository.findOne({
+        where: { id: savedDepartment.id },
+        relations: ['subDepartments'],
+      });
+    });
+  }
+
+  async getAllDepartments(): Promise<Department[]> {
+    return this.departmentRepository.find({
+      relations: ['subDepartments'],
+    });
+  }
+}

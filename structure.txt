@@ -1,0 +1,25 @@
+├── src/
+│   ├── entities/
+│   │   ├── user.entity.ts
+│   │   ├── department.entity.ts
+│   │   └── sub-department.entity.ts
+│   ├── resolvers/
+│   │   ├── auth.resolver.ts
+│   │   ├── department.resolver.ts
+│   │   └── sub-department.resolver.ts
+│   ├── services/
+│   │   ├── auth.service.ts
+│   │   ├── department.service.ts
+│   │   └── sub-department.service.ts
+│   ├── utils/
+│   │   ├── auth.ts
+│   │   └── validation.ts
+│   ├── app.ts
+│   └── index.ts
+├── .env
+├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+├── tsconfig.json
+└── README.md
