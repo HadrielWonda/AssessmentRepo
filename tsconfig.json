@@ -1,5 +1,5 @@
 {
-  // "$schema": "https://json.schemastore.org/tsconfig", // NOTE: Uncomment if schema validation is required and network is available
+  // NOTE: Schema reference intentionally removed to avoid loading issues when network is unavailable
     "compilerOptions": {
       "target": "ES2022",
       "module": "NodeNext",
@@ -14,7 +14,7 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "lib": ["ES2022", "DOM", "ES2015.Reflect"],
-      "types": ["node"],
+      "types": ["node", "jsonwebtoken"],
       "baseUrl": ".",
       "paths": {
         "@/*": ["./src/*"]
