@@ -1,4 +1,5 @@
 {
+  // "$schema": "https://json.schemastore.org/tsconfig", // NOTE: Uncomment if schema validation is required and network is available
     "compilerOptions": {
       "target": "ES2022",
       "module": "NodeNext",

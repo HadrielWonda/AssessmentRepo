@@ -1,12 +1,12 @@
 import { validate } from 'class-validator';
-import { BadRequestError } from 'apollo-server-express';
+import { ApolloError } from 'apollo-server-express';
 
 export const validateInput = async (input: object) => {
   const errors = await validate(input);
   if (errors.length > 0) {
     const message = errors
-      .map((error) => Object.values(error.constraints))
+      .map((error) => error.constraints ? Object.values(error.constraints) : [])
       .join(', ');
-    throw new BadRequestError(message);
+    throw new ApolloError(message, 'BAD_REQUEST');
   }
 };

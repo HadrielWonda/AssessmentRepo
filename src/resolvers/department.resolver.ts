@@ -1,4 +1,3 @@
-// src/resolvers/department.resolver.ts
 import {
     Arg,
     Mutation,

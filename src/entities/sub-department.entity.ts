@@ -5,13 +5,13 @@ import { Department } from './department.entity';
 @Entity()
 export class SubDepartment {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ length: 255 })
-  name: string;
+  name: string = '';
 
   @ManyToOne(() => Department, (department) => department.subDepartments, {
     onDelete: 'CASCADE',
   })
-  department: Department;
+  department!: Department;
 }

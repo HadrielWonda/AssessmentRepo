@@ -1,8 +1,8 @@
-// src/services/department.service.ts
+import { CreateDepartmentInput } from '../resolvers/department.resolver';
 import { Department } from '../entities/department.entity';
 import { SubDepartment } from '../entities/sub-department.entity';
 import { AppDataSource } from '../data-source';
-import { CreateDepartmentInput } from '../resolvers/department.resolver';
+
 
 export class DepartmentService {
   private departmentRepository = AppDataSource.getRepository(Department);
@@ -26,10 +26,16 @@ export class DepartmentService {
         await transactionalEntityManager.save(subDepartments);
       }
 
-      return this.departmentRepository.findOne({
+      const createdDepartment = await this.departmentRepository.findOne({
         where: { id: savedDepartment.id },
         relations: ['subDepartments'],
       });
+
+      if (!createdDepartment) {
+        throw new Error('Department not found after creation');
+      }
+
+      return createdDepartment;
     });
   }
 

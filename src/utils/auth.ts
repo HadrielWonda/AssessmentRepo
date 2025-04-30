@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../entities/user.entity';
+import { Context } from '../types/context';
 
 export const generateToken = (user: User): string => {
   return jwt.sign(
@@ -12,6 +13,8 @@ export const generateToken = (user: User): string => {
 export const verifyToken = (token: string): any => {
   return jwt.verify(token, process.env.JWT_SECRET!);
 };
+
+
 
 export const authChecker = ({ context }: { context: Context }) => {
   return !!context.user;

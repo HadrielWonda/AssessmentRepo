@@ -5,13 +5,13 @@ import { SubDepartment } from './sub-department.entity';
 @Entity()
 export class Department {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ length: 255 })
-  name: string;
+  name!: string;
 
   @OneToMany(() => SubDepartment, (sub) => sub.department, {
     cascade: true,
   })
-  subDepartments: SubDepartment[];
+  subDepartments: SubDepartment[] = [];
 }
